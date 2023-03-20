@@ -10,6 +10,9 @@ public class TimeController : MonoBehaviour
     private float timeMultiplier;
 
     [SerializeField]
+    private Material Skyboxy;
+
+    [SerializeField]
     private float startHour;
     //add text gui for time;
 
@@ -66,6 +69,7 @@ public class TimeController : MonoBehaviour
             float skycolor = Mathf.Lerp(0, 0.5f, (float)percentage);
 
             RenderSettings.ambientLight = DayPreset.ambientColor.Evaluate(skycolor);
+            Skyboxy.SetColor("_SkyTint", DayPreset.directionalColor.Evaluate(skycolor));
             sunLight.color = DayPreset.directionalColor.Evaluate(skycolor);
 
 
@@ -80,6 +84,7 @@ public class TimeController : MonoBehaviour
             sunlightRotation= Mathf.Lerp(180,360, (float)percentage);
             float skycolor = Mathf.Lerp(0.5f, 1, (float)percentage);
             RenderSettings.ambientLight = DayPreset.ambientColor.Evaluate(skycolor);
+            Skyboxy.SetColor("_SkyTint", DayPreset.directionalColor.Evaluate(skycolor));
             sunLight.color = DayPreset.directionalColor.Evaluate(skycolor);
         }
         sunLight.transform.rotation = Quaternion.AngleAxis(sunlightRotation, Vector3.right);
