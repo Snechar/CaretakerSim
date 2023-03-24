@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 //[ExecuteAlways]
@@ -34,9 +35,13 @@ public class TimeController : MonoBehaviour
     [SerializeField]
     private TimeSpan sunsetTime;
 
+    public TextMeshProUGUI hourDisplay;
+    public static TimeController Instance;
+
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         currentTime = DateTime.Now.Date +TimeSpan.FromHours(startHour);
         sunriseTime = TimeSpan.FromHours(sunriseHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
@@ -54,6 +59,7 @@ public class TimeController : MonoBehaviour
         currentTime = currentTime.AddSeconds(timeMultiplier * Time.deltaTime);
 
         //show in UI
+        hourDisplay.text = currentTime.ToString("HH:mm");
     }
     public void RotateSun()
     {
