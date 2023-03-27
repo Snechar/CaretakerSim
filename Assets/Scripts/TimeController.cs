@@ -93,7 +93,8 @@ public class TimeController : MonoBehaviour
             Skyboxy.SetColor("_SkyTint", DayPreset.directionalColor.Evaluate(skycolor));
             sunLight.color = DayPreset.directionalColor.Evaluate(skycolor);
         }
-        sunLight.transform.rotation = Quaternion.AngleAxis(sunlightRotation, Vector3.right);
+        sunLight.transform.rotation = Quaternion.AngleAxis(sunlightRotation, new Vector3(1,0,0));
+        
     }
     private TimeSpan CalculateTimeDiff(TimeSpan fromTime, TimeSpan toTime)
     {
