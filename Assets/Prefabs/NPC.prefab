@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8195955548688971519}
   - component: {fileID: 8195955548688971512}
   - component: {fileID: 8195955548688971513}
+  - component: {fileID: 5222278527493673030}
+  - component: {fileID: 6364389170491907647}
   m_Layer: 0
   m_Name: NPC
   m_TagString: NPC
@@ -33,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8195955548688971518
 MeshFilter:
@@ -130,3 +132,38 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5222278527493673030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195955548688971514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8353325b4c577a44288a478171f4d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food: 100
+  foodRatePerHour: 10
+  toilet: 100
+  toiletRatePerHour: 10
+  sleep: 100
+  sleepRatePerHour: 10
+  actualSleepRate: 0
+  isEating: 0
+  isToilet: 0
+  isSleep: 0
+  isBusy: 0
+--- !u!114 &6364389170491907647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195955548688971514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a4faaace43f7b43bed35dbddcafa73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

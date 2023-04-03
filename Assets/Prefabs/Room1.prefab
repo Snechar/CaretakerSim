@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76f2cc77708c7e40bcf1be79d8e6066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Npc: {fileID: 0}
+  bedManager: {fileID: 0}
 --- !u!1 &6514929450267107106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3872,6 +3874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Npc: {fileID: 0}
   expectedHoursOfSleep: 8
+  anchorPoint: {fileID: 0}
 --- !u!1001 &6560313667381659152
 PrefabInstance:
   m_ObjectHideFlags: 0

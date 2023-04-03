@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class BedManager : MonoBehaviour
+public class BedManager : ManagerBase
 {
     public NPCStats Npc;
     public float expectedHoursOfSleep;
     private System.DateTime snapshotTime;
     private bool isAsleep;
     public GameObject anchorPoint;
+
     // Start is called before the first frame update
     void Start()
     {
