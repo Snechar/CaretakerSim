@@ -96,7 +96,7 @@ public class TimeController : MonoBehaviour
         sunLight.transform.rotation = Quaternion.AngleAxis(sunlightRotation, new Vector3(1,0,0));
         
     }
-    private TimeSpan CalculateTimeDiff(TimeSpan fromTime, TimeSpan toTime)
+    public TimeSpan CalculateTimeDiff(TimeSpan fromTime, TimeSpan toTime)
     {
         TimeSpan diff = toTime - fromTime;
         if (diff.TotalSeconds < 0)

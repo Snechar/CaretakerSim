@@ -19,10 +19,10 @@ public class NPCStats : MonoBehaviour
     public float sleepRatePerHour;
     public float actualSleepRate;
 
-    private bool isEating;
-    private bool isToilet;
-    private bool isSleep;
-    private bool isBusy;
+    public bool isEating;
+    public bool isToilet;
+    public bool isSleep;
+    public bool isBusy;
     // Start is called before the first frame update
     void Start()
     {
