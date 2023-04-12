@@ -16,8 +16,12 @@ public class BedManager : ManagerBase
     {
         Npc = this.GetComponentInParent<Transform>().gameObject.GetComponentInParent<RoomManager>().Npc;
     }
-    public void StartSleep()
+    public void StartSleep(NPCStats npc)
     {
+        if (Npc == null)
+        {
+            Npc = npc;
+        }
         snapshotTime = TimeController.Instance.currentTime;
         Npc.isSleep = true;
         StartCoroutine(CountSleep());
@@ -35,7 +39,7 @@ public class BedManager : ManagerBase
         }
     }
 
-    public void ForceWakeUp()
+    public void ForceWakeUp(NPCStats npc)
     {
         if (Npc == null) { return; }
         var sleptTime = TimeController.Instance.CalculateTimeDiff(snapshotTime.TimeOfDay, TimeController.Instance.currentTime.TimeOfDay);
@@ -43,6 +47,8 @@ public class BedManager : ManagerBase
         var percentage = sleptTime.TotalHours * 100 / expectedHoursOfSleep;
         Npc.sleep += (float)percentage;
         Mathf.Clamp(Npc.sleep, 0, 100);
+        npc.currentSchedule.hasEnded = true;
+        npc.SerializeSchedules();
     }
     private void WakeUp(NPCStats npc)
     {
@@ -50,6 +56,9 @@ public class BedManager : ManagerBase
 
        Npc.isSleep = false;
         Npc.sleep = 100;
+
+        npc.currentSchedule.hasEnded = true;
+        npc.SerializeSchedules();
 
     }
     // Update is called once per frame

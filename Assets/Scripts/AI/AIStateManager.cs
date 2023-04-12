@@ -9,6 +9,8 @@ public class AIStateManager : MonoBehaviour
     AIMoveState moveState = new AIMoveState();
     AINeedsState needsState = new AINeedsState();
     AIBusyState busyState= new AIBusyState();
+
+    public Vector3 locationToGo;
     // Start is called before the first frame update
     void Start()
     {

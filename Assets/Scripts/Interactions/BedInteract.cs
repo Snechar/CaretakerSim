@@ -16,7 +16,7 @@ public class BedInteract : Interactable
     }
     public override void OnUse(NPCStats npc)
     {
-        throw new System.NotImplementedException();
+        bman.StartSleep(npc);
     }
 
     public override ManagerBase GetManager(NPCStats npc)
