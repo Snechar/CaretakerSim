@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1447412947}
-  m_IndirectSpecularColor: {r: 0.026941568, g: 0.04062853, b: 0.07059148, a: 1}
+  m_IndirectSpecularColor: {r: 0.16296615, g: 0.2801656, b: 0.53901374, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6263,6 +6263,14 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6291097685638058796, guid: 397a19634cf9a0249a0fd074dfb6b7f0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1838974223}
+    - targetCorrespondingSourceObject: {fileID: 6291097685638058796, guid: 397a19634cf9a0249a0fd074dfb6b7f0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1838974222}
     - targetCorrespondingSourceObject: {fileID: 1711237838148501459, guid: 397a19634cf9a0249a0fd074dfb6b7f0,
         type: 3}
       insertIndex: -1
@@ -12496,6 +12504,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1834816871}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1838974220 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6291097685638058796, guid: 397a19634cf9a0249a0fd074dfb6b7f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 812680661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1838974222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838974220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4237ea29fd3904dbf4ccb311a59d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Manager: {fileID: 1838974223}
+--- !u!114 &1838974223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838974220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fefeaa1892cd6634ea1921786a4e5260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Npc: {fileID: 0}
 --- !u!1001 &1838991942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12947,7 +12987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeMultiplier: 50
   Skyboxy: {fileID: 2100000, guid: a5f41dd620b043d4da47dd1e2dbb91a1, type: 2}
-  startHour: 21.8
+  startHour: 7.9
   sunLight: {fileID: 1447412947}
   sunriseHour: 7
   DayPreset: {fileID: 11400000, guid: 2f46e978a55f0c448b972a75cddda816, type: 2}
@@ -13055,6 +13095,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2053617661}
+    - targetCorrespondingSourceObject: {fileID: 7937279310123757466, guid: 51725fec2f7152c4e9c5920b7ac97bb4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2053617667}
+    - targetCorrespondingSourceObject: {fileID: 7937279310123757466, guid: 51725fec2f7152c4e9c5920b7ac97bb4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2053617666}
   m_SourcePrefab: {fileID: 100100000, guid: 51725fec2f7152c4e9c5920b7ac97bb4, type: 3}
 --- !u!1001 &1935035110
 PrefabInstance:
@@ -13605,6 +13653,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1892390166}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2053617666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053617656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ce8e0433ccba4b9c89b5057c04bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chairs: []
+--- !u!114 &2053617667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053617656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb49ca5417769448af08370dd3c2696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kman: {fileID: 2053617666}
 --- !u!4 &2067568670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8061425863377333392, guid: 397a19634cf9a0249a0fd074dfb6b7f0,
@@ -14014,7 +14088,7 @@ PrefabInstance:
     - target: {fileID: 5222278527493673030, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
         type: 3}
       propertyPath: scheduleObjects.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5222278527493673030, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
         type: 3}
@@ -14029,7 +14103,12 @@ PrefabInstance:
     - target: {fileID: 5222278527493673030, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
         type: 3}
       propertyPath: scheduleObjects.Array.data[2].endTime
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222278527493673030, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
+        type: 3}
+      propertyPath: scheduleObjects.Array.data[3].endTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5222278527493673030, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
         type: 3}
@@ -14044,7 +14123,12 @@ PrefabInstance:
     - target: {fileID: 5222278527493673030, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
         type: 3}
       propertyPath: scheduleObjects.Array.data[2].startTime
-      value: 22
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222278527493673030, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
+        type: 3}
+      propertyPath: scheduleObjects.Array.data[3].startTime
+      value: 9.199999809265137
       objectReference: {fileID: 0}
     - target: {fileID: 5222278527493673030, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
         type: 3}
@@ -14055,12 +14139,17 @@ PrefabInstance:
         type: 3}
       propertyPath: scheduleObjects.Array.data[1].interactable
       value: 
-      objectReference: {fileID: 858225700}
+      objectReference: {fileID: 2053617667}
     - target: {fileID: 5222278527493673030, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
         type: 3}
       propertyPath: scheduleObjects.Array.data[2].interactable
       value: 
-      objectReference: {fileID: 858225700}
+      objectReference: {fileID: 2053617667}
+    - target: {fileID: 5222278527493673030, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
+        type: 3}
+      propertyPath: scheduleObjects.Array.data[3].interactable
+      value: 
+      objectReference: {fileID: 1838974222}
     - target: {fileID: 8195955548688971514, guid: 2a78bccf5a64ad145b9cdea64f1b5324,
         type: 3}
       propertyPath: m_Name
