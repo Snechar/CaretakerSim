@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
-public abstract class AIBaseState
+[Serializable]
+public abstract class AIBaseState 
 {
     abstract public void EnterState(AIStateManager Ai);
 

@@ -19,7 +19,7 @@ public class NPCStats : MonoBehaviour
     [Range(0f, 100f)]
     public float sleep;
     public float sleepRatePerHour;
-    public float actualSleepRate;
+    private float actualSleepRate;
 
     public bool isEating;
     public bool isToilet;
@@ -35,7 +35,7 @@ public class NPCStats : MonoBehaviour
 
     private IEnumerator CheckSchedule()
     {
-        Debug.Log("RanCoroutine");
+
         yield return new WaitForSeconds(0.2f);
         if ((TimeSpan.FromHours(currentSchedule.endTime) - TimeController.Instance.currentTime.TimeOfDay).TotalSeconds < 0 && currentSchedule.hasStarted == true)
         {
@@ -125,10 +125,10 @@ public class NPCStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //We multiply the vaue by 3 because we intend to update the value every 3 seconds (to save computin power)
-        actualFoodRate = foodRatePerHour / 3600 * 3;
-        actualToiletRate = toiletRatePerHour / 3600 * 3;
-        actualSleepRate = sleepRatePerHour / 3600 * 3;
+        //We multiply the vaue by 3 because we intend to update the value every 3 seconds (to save computing power)
+        actualFoodRate = foodRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
+        actualToiletRate = toiletRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
+        actualSleepRate = sleepRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
         StartCoroutine(LowerStats());
         StartCoroutine(CheckSchedule());
         SerializeSchedules();

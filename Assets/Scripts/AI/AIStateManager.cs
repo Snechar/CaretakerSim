@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIStateManager : MonoBehaviour
 {
-    AIBaseState currentState;
+   public AIBaseState currentState;
     AIIdleState idleState = new AIIdleState();
     AIMoveState moveState = new AIMoveState();
     AINeedsState needsState = new AINeedsState();

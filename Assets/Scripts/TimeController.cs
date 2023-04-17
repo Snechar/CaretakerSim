@@ -8,7 +8,7 @@ using UnityEngine;
 public class TimeController : MonoBehaviour
 {
     [SerializeField]
-    private float timeMultiplier;
+    public float timeMultiplier;
 
     [SerializeField]
     private Material Skyboxy;
@@ -41,10 +41,13 @@ public class TimeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instance = this;
         currentTime = DateTime.Now.Date +TimeSpan.FromHours(startHour);
         sunriseTime = TimeSpan.FromHours(sunriseHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
+    }
+    private void Awake()
+    {
+        Instance = this;
     }
 
     // Update is called once per frame
