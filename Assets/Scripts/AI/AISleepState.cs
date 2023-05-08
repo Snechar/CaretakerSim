@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class AISleepState : AIBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void EnterState(AIStateManager Ai)
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UpdateState(AIStateManager Ai)
     {
-        
+
     }
 }

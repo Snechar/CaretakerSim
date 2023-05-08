@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class ManagerBase : MonoBehaviour
 {
-
+    public abstract void OnUse(NPCStats npc);
 }

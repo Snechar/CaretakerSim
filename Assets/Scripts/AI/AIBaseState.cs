@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public abstract class AIBaseState 
+public abstract class AIBaseState :MonoBehaviour
 {
     abstract public void EnterState(AIStateManager Ai);
 

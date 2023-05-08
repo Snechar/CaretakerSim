@@ -47,8 +47,7 @@ public class BedManager : ManagerBase
         var percentage = sleptTime.TotalHours * 100 / expectedHoursOfSleep;
         Npc.sleep += (float)percentage;
         Mathf.Clamp(Npc.sleep, 0, 100);
-        npc.currentSchedule.hasEnded = true;
-        npc.SerializeSchedules();
+
     }
     private void WakeUp(NPCStats npc)
     {
@@ -57,13 +56,12 @@ public class BedManager : ManagerBase
        Npc.isSleep = false;
         Npc.sleep = 100;
 
-        npc.currentSchedule.hasEnded = true;
-        npc.SerializeSchedules();
+
+
 
     }
-    // Update is called once per frame
-    void Update()
+    public override void OnUse(NPCStats npc)
     {
-        
+        StartSleep(npc);
     }
 }

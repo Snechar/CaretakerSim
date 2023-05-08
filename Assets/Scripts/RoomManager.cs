@@ -6,15 +6,13 @@ public class RoomManager : MonoBehaviour
 {
     public NPCStats Npc;
     public BedManager bedManager;
-    // Start is called before the first frame update
-    void Start()
+
+    public List<ManagerBase> idleManagers = new List<ManagerBase>();
+
+
+    public ManagerBase RandomIdleManager()
     {
-        
+       return idleManagers[Random.Range(0, idleManagers.Count)];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

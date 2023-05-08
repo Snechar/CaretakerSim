@@ -5,15 +5,29 @@ using UnityEngine;
 public class AIStateManager : MonoBehaviour
 {
    public AIBaseState currentState;
-    AIIdleState idleState = new AIIdleState();
-    AIMoveState moveState = new AIMoveState();
-    AINeedsState needsState = new AINeedsState();
-    AIBusyState busyState= new AIBusyState();
+   public AIIdleState idleState;
+   public AIMoveState moveState;
+   public AINeedsState needsState;
+   public AIBusyState busyState;
 
-    public Vector3 locationToGo;
     // Start is called before the first frame update
     void Start()
     {
+
+
+        try
+        {
+          idleState = FindObjectOfType<AIIdleState>();
+          moveState = FindObjectOfType<AIMoveState>();
+          needsState = FindObjectOfType<AINeedsState>();
+          busyState = FindObjectOfType<AIBusyState>();
+        }
+        catch (System.Exception)
+        {
+
+            throw;
+        }
+
         currentState = idleState;
         currentState.EnterState(this);
     }
@@ -22,5 +36,10 @@ public class AIStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+    }
+
+    public void UpdateState(AIBaseState AI)
+    {
+        currentState= AI;
     }
 }

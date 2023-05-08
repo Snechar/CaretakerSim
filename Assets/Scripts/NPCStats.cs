@@ -27,101 +27,136 @@ public class NPCStats : MonoBehaviour
     public bool isBusy;
     private bool isPathing = false;
 
-    public List<ScheduleObject> scheduleObjects = new List<ScheduleObject>();
     private float previousHour;
     public ScheduleObject currentSchedule;
+    public ScheduleObject currentNeed;
     public NavMeshAgent agent;
     private bool hasPath = false;
+    [SerializeField]
+    private bool finishedCurrentTask = false;
+    [SerializeField]
+    private bool isDoingCurrentTask = false;
+    [SerializeField]
+    private bool finishedCurrentNeed = false;
+    [SerializeField]
+    private bool isDoingCurrentNeed = false;
+    private AIStateManager stateManager;
+    public RoomManager room;
 
-    private IEnumerator CheckSchedule()
+
+
+    private void StartTask()
     {
-
-        yield return new WaitForSeconds(0.2f);
-        if ((TimeSpan.FromHours(currentSchedule.endTime) - TimeController.Instance.currentTime.TimeOfDay).TotalSeconds < 0 && currentSchedule.hasStarted == true)
+        while (isDoingCurrentNeed)
         {
-            currentSchedule.hasEnded = true;
-            SerializeSchedules();
+            Debug.Log("Is Waiting");
         }
-        if ((TimeSpan.FromHours(currentSchedule.startTime) - TimeController.Instance.currentTime.TimeOfDay).TotalSeconds < 0 && !currentSchedule.hasEnded && !currentSchedule.hasStarted)
-        {
-           currentSchedule.hasStarted = true;
-
-            agent.SetDestination(currentSchedule.interactable.gameObject.transform.position);
-            hasPath = true;
-            while (hasPath)
-            {
-                yield return new WaitForSeconds(1);
-                if (!agent.hasPath && agent.velocity.sqrMagnitude == 0f && currentSchedule.hasStarted)
-                {
-                    Interact(currentSchedule);
-                    SerializeSchedules();
-                    hasPath = false;
-                    break;
-                }
-                if ((TimeSpan.FromHours(currentSchedule.endTime) - TimeController.Instance.currentTime.TimeOfDay).TotalSeconds < 0 && currentSchedule.hasStarted == true)
-                {
-                    currentSchedule.hasEnded = true;
-                    SerializeSchedules();
-                    break;
-                }
-
-            }
-       
-
-        }
-        StartCoroutine(CheckSchedule());
+        currentSchedule = ScheduleManager.Instance.currentSchedule;
+        isDoingCurrentTask = true;
+        finishedCurrentTask= false;
+        stateManager.UpdateState(currentSchedule.stateToEnter);
+        StartCoroutine(MoveToLocationSecure(ScheduleManager.Instance.currentSchedule.manager.gameObject.transform, currentSchedule));
 
     }
+    public void StartSpecifiNeed(ScheduleObject schedule)
+    {
+        if (isBusy)
+        {
+            return;
+        }
+        currentNeed = schedule;
+        isDoingCurrentTask = true;
+        finishedCurrentTask = false;
+        stateManager.UpdateState(currentNeed.stateToEnter);
+        StartCoroutine(MoveToLocationSecure(currentNeed.manager.gameObject.transform, currentNeed));
+    }
+    private void EndTask()
+    {
+        currentSchedule = null;
+        isDoingCurrentTask = false;
+        finishedCurrentTask = true;
+        stateManager.UpdateState(stateManager.idleState);
+    }
+    public void EndNeed()
+    {
+        currentNeed = null;
+        isDoingCurrentNeed = false;
+        finishedCurrentNeed = true;
+        stateManager.UpdateState(stateManager.idleState);
+    }
+    //private IEnumerator CheckForTasks()
+    //{
+    //    if (ScheduleManager.Instance.currentSchedule == currentSchedule && finishedCurrentTask == true)
+    //    {
+    //        finishedCurrentTask = true;
+    //        isDoingCurrentTask = false;
+    //    }
+    //    if (ScheduleManager.Instance.currentSchedule.hasStarted && currentSchedule != ScheduleManager.Instance.currentSchedule)
+    //    {
+    //        currentSchedule = ScheduleManager.Instance.currentSchedule;
+    //        finishedCurrentTask = false;
+    //        isDoingCurrentTask = false;
+    //    }
+    //    if (ScheduleManager.Instance.currentSchedule.hasStarted && !isDoingCurrentTask && !finishedCurrentTask)
+    //    {
+    //        isDoingCurrentTask = true;
+    //        StartCoroutine(MoveToLocationSecure());
+
+    //    }
+    //    yield return new WaitForSeconds(1);
+    //    StartCoroutine(CheckForTasks());
+    //}
+
+    private IEnumerator MoveToLocationSecure(Transform location, ScheduleObject obj)
+    {
+        MoveToLocation(location);
+        ScheduleObject rememberScheduleObject = obj;
+        hasPath = true;
+        while (hasPath)
+        {
+            yield return new WaitForSeconds(0.2f);
+            if (!agent.hasPath && agent.velocity.sqrMagnitude == 0f)
+            {
+                Interact(rememberScheduleObject);
+                hasPath = false;
+                break;
+            }
+
+        }
+    }
+    public void MoveToLocationSecureNoInteractCall(Transform location)
+    {
+        StartCoroutine(MoveToLocationSecureNoInteract(location));
+    }
+    private IEnumerator MoveToLocationSecureNoInteract(Transform location)
+    {
+        MoveToLocation(location);
+        hasPath = true;
+        while (hasPath)
+        {
+            yield return new WaitForSeconds(0.2f);
+            if (!agent.hasPath && agent.velocity.sqrMagnitude == 0f)
+            {
+                hasPath = false;
+                break;
+            }
+
+        }
+       
+    }
+    private void MoveToLocation(Transform location)
+    {
+        agent.SetDestination(location.position);
+    }
+
+   
     private void Interact(ScheduleObject obj)
     {
 
-       ManagerBase manager  = obj.interactable.GetManager(this);
-        if (manager is BedManager)
-        {
-            BedManager bedManager = (BedManager)manager;
-            bedManager.StartSleep(this);
-        }
-        if (manager is KitchenManager)
-        {
-            KitchenManager kitchenManager = (KitchenManager)manager;
-            kitchenManager.Eat(this);
-        }
-        if (manager is ChairManager)
-        {
-            ChairManager kitchenManager = (ChairManager)manager;
-            kitchenManager.SitNpc(this);
-        }
-
-
-
+       ManagerBase manager  = obj.manager;
+        manager.OnUse(this);
     }
-    static int SortByScore(ScheduleObject p1, ScheduleObject p2)
-    {
-        return p1.startTime.CompareTo(p2.startTime);
-    }
-    public void SerializeSchedules()
-    {
 
-        scheduleObjects.Sort((p1,p2)=>p1.startTime.CompareTo(p2.startTime));
-        for (int i = 0; i < scheduleObjects.Count-1; i++)
-        {
-            if (currentSchedule.hasStarted && currentSchedule.hasEnded && !scheduleObjects[i].playedToday)
-            {
-                scheduleObjects[i+1].nextTask = true;
-                currentSchedule = scheduleObjects[i + 1];
-                scheduleObjects[i].playedToday = true;
-                break;
-            }
-            if (currentSchedule.interactable == null)
-            {
-                currentSchedule = scheduleObjects[i];
-                currentSchedule.nextTask = true;
-                break;
-            }
-        }
-       
-   
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -130,9 +165,11 @@ public class NPCStats : MonoBehaviour
         actualToiletRate = toiletRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
         actualSleepRate = sleepRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
         StartCoroutine(LowerStats());
-        StartCoroutine(CheckSchedule());
-        SerializeSchedules();
-    
+
+        ScheduleManager.Instance.scheduleStart.AddListener(StartTask);
+        ScheduleManager.Instance.scheduleEnd.AddListener(EndTask);
+        stateManager = GetComponent<AIStateManager>();
+
     }
     public IEnumerator LowerStats()
     {
@@ -151,6 +188,24 @@ public class NPCStats : MonoBehaviour
     }
     private void DoToilet()
     {
+        if (currentNeed.manager != null)
+        {
+            if (currentNeed.manager.GetType() == typeof(ToiletManager))
+            {
+                return;
+            }
+
+        }
+        ScheduleObject scheduleObject = new ScheduleObject
+        {
+            nextTask = true,
+            startTime = TimeController.Instance.currentTime.TimeOfDay.TotalHours,
+            endTime = (TimeController.Instance.currentTime.TimeOfDay + TimeSpan.FromMinutes(5)).TotalHours,
+            stateToEnter = stateManager.busyState,
+            hasStarted = true,
+            manager = FindObjectOfType<ToiletManager>()
+        };
+        StartSpecifiNeed(scheduleObject);
 
     }
     private void DoSleep()

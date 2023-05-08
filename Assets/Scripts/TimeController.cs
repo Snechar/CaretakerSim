@@ -38,10 +38,14 @@ public class TimeController : MonoBehaviour
     public TextMeshProUGUI hourDisplay;
     public static TimeController Instance;
 
+    public int Day = 1;
+    public DateTime date;
+
     // Start is called before the first frame update
     void Start()
     {
         currentTime = DateTime.Now.Date +TimeSpan.FromHours(startHour);
+        date = DateTime.Now.Date;
         sunriseTime = TimeSpan.FromHours(sunriseHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
     }
@@ -50,11 +54,21 @@ public class TimeController : MonoBehaviour
         Instance = this;
     }
 
+    private void CheckDay()
+    {
+        if (currentTime.Date != date.Date)
+        {
+            date = currentTime;
+            Day++;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         UpdateTimeOfDay();
         RotateSun();
+        CheckDay();
     }
 
     private void UpdateTimeOfDay()

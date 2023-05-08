@@ -16,8 +16,6 @@ public class ChairInteraction : Interactable
     {
         Debug.Log("Just went to the chair");
 
-        npc.currentSchedule.hasEnded = true;
-        npc.SerializeSchedules();
     }
 
     // Start is called before the first frame update
