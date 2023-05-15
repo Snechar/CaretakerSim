@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class AIStateManager : MonoBehaviour
 {
+   public NPCStats npc;
    public AIBaseState currentState;
    public AIIdleState idleState;
    public AIMoveState moveState;
    public AINeedsState needsState;
    public AIBusyState busyState;
+   public bool Idled;
+
 
     // Start is called before the first frame update
     void Start()
     {
 
-
+        npc = GetComponent<NPCStats>();
         try
         {
           idleState = FindObjectOfType<AIIdleState>();

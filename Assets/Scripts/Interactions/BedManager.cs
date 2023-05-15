@@ -10,6 +10,7 @@ public class BedManager : ManagerBase
     private System.DateTime snapshotTime;
     private bool isAsleep;
     public GameObject anchorPoint;
+    public GameObject brushPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -60,8 +61,14 @@ public class BedManager : ManagerBase
 
 
     }
+    private void BrushTeeth(NPCStats npc)
+    {
+        npc.MoveToLocationSecureNoInteractCall(brushPoint.transform);
+    }
+
     public override void OnUse(NPCStats npc)
     {
+
         StartSleep(npc);
     }
 }

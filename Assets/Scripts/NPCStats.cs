@@ -25,13 +25,14 @@ public class NPCStats : MonoBehaviour
     public bool isToilet;
     public bool isSleep;
     public bool isBusy;
+    public bool idleStarted;
     private bool isPathing = false;
 
     private float previousHour;
     public ScheduleObject currentSchedule;
     public ScheduleObject currentNeed;
     public NavMeshAgent agent;
-    private bool hasPath = false;
+    public bool hasPath = false;
     [SerializeField]
     private bool finishedCurrentTask = false;
     [SerializeField]
@@ -42,6 +43,7 @@ public class NPCStats : MonoBehaviour
     private bool isDoingCurrentNeed = false;
     private AIStateManager stateManager;
     public RoomManager room;
+
 
 
 
@@ -203,7 +205,7 @@ public class NPCStats : MonoBehaviour
             endTime = (TimeController.Instance.currentTime.TimeOfDay + TimeSpan.FromMinutes(5)).TotalHours,
             stateToEnter = stateManager.busyState,
             hasStarted = true,
-            manager = FindObjectOfType<ToiletManager>()
+            manager = room.GetToiletInRoom()
         };
         StartSpecifiNeed(scheduleObject);
 

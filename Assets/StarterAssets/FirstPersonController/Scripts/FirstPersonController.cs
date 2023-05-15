@@ -59,6 +59,8 @@ namespace StarterAssets
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
+		bool active = false;
+		public float playeraActiveDistance = 2f;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -112,14 +114,43 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			JumpAndGravity();
-			GroundedCheck();
-			Move();
-		}
+            CameraRotation();
+            JumpAndGravity();
+            GroundedCheck();
+
+            CheckHit();
+        }
 
 		private void LateUpdate()
 		{
-			CameraRotation();
+            Move();
+        }
+
+		private void CheckHit()
+		{
+			RaycastHit Hit;
+			active = Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.TransformDirection(Vector3.forward), out Hit, playeraActiveDistance);
+			if (Input.GetKeyDown(KeyCode.F) && active == true)
+			{
+				if (Hit.transform.GetComponent<SpawnerScript>()!=null)
+				{
+					Hit.transform.GetComponent<SpawnerScript>().DisablePills();
+
+                }
+			}
+			if (active == true)
+			{
+                if (Hit.transform.GetComponent<SpawnerScript>() != null)
+                {
+                    CanvasController.Instance.EnableInteractText();
+                }
+                else
+                {
+                    CanvasController.Instance.DisableInteractText();
+                }
+            }
+
+
 		}
 
 		private void GroundedCheck()
