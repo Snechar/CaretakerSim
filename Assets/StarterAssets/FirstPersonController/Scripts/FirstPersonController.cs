@@ -132,15 +132,20 @@ namespace StarterAssets
 			active = Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.TransformDirection(Vector3.forward), out Hit, playeraActiveDistance);
 			if (Input.GetKeyDown(KeyCode.F) && active == true)
 			{
-				if (Hit.transform.GetComponent<SpawnerScript>()!=null)
+				if (Hit.transform.GetComponent<SpawnerScript>() != null)
 				{
-					Hit.transform.GetComponent<SpawnerScript>().DisablePills();
 
-                }
+
+				}
+				if (Hit.transform.GetComponent<InteractablePlace>() != null)
+				{
+
+					Hit.transform.GetComponent<InteractablePlace>().Interact();
+				}
 			}
 			if (active == true)
 			{
-                if (Hit.transform.GetComponent<SpawnerScript>() != null)
+				if (Hit.transform.GetComponent<SpawnerScript>() != null || Hit.transform.GetComponent<InteractablePlace>() != null)
                 {
                     CanvasController.Instance.EnableInteractText();
                 }

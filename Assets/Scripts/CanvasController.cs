@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CanvasController : MonoBehaviour
@@ -26,6 +27,7 @@ public class CanvasController : MonoBehaviour
     }
     public void EnableInteractText()
     {
+        //InteractText.GetComponent<TextMeshPro>().text = text;
         InteractText.SetActive(true);
     }
 }
