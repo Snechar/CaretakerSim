@@ -13,8 +13,8 @@ public class SpawnerController : MonoBehaviour
 {
     public SpawnerScript[] Spawners;
     public RoomManager roomController;
-    public bool shouldSpawn;
     public SpawnType type;
+    public bool DebugSpawner;
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class SpawnerController : MonoBehaviour
 
     private void Update()
     {
-        if (shouldSpawn)
+        if (DebugSpawner)
         {
             switch (type)
             {

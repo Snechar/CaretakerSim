@@ -8,6 +8,8 @@ public class CanvasController : MonoBehaviour
 
     public static CanvasController Instance;
     public GameObject InteractText;
+    public GameObject DropText;
+    public bool shouldRemove = true;
 
     private void Awake()
     {
@@ -23,11 +25,23 @@ public class CanvasController : MonoBehaviour
 
     public void DisableInteractText()
     {
-        InteractText.SetActive(false);
+        if (shouldRemove)
+        {
+            InteractText.SetActive(false);
+        }
+    
     }
     public void EnableInteractText()
     {
         //InteractText.GetComponent<TextMeshPro>().text = text;
         InteractText.SetActive(true);
+    }
+    public void DisableDropText()
+    {
+        DropText.SetActive(false);
+    }
+    public void EnableDropText()
+    {
+        DropText.SetActive(true);
     }
 }

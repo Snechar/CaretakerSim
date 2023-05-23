@@ -117,8 +117,10 @@ namespace StarterAssets
             CameraRotation();
             JumpAndGravity();
             GroundedCheck();
+			CheckButtons();
 
-            CheckHit();
+
+			CheckHit();
         }
 
 		private void LateUpdate()
@@ -164,6 +166,13 @@ namespace StarterAssets
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 		}
+		private void CheckButtons()
+        {
+            if (Input.GetKeyDown("x"))
+            {
+				Inventory.Instance.RemoveItem();
+            }
+        }
 
 		private void CameraRotation()
 		{

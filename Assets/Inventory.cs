@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform parentTransform;
+    public GameObject item = null;
+    private GameObject ItemToCopy;
 
-    // Update is called once per frame
-    void Update()
+
+    public static Inventory Instance;
+    private void Awake()
     {
-        
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    public void SetItem(GameObject Item)
+    {
+        if (item != null)
+        {
+            Destroy(item);
+        }
+        ItemToCopy = Item;
+        item = Instantiate(ItemToCopy,parentTransform);
+        item.GetComponent<BoxCollider>().enabled = false;
+        CanvasController.Instance.EnableDropText();
+    }
+    public void RemoveItem()
+    {
+        if (item == null)
+        {
+            return;
+        }
+        Destroy(item);
+        CanvasController.Instance.DisableDropText();
     }
 }

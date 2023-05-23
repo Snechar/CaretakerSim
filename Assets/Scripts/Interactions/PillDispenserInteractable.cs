@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PillDispenserInteractable : InteractablePlace
 {
-    public bool infinite = true;
+   
     public override void Interact()
     {
-        Debug.Log("Yippie2");
+        Inventory.Instance.SetItem(this.gameObject);
+        if (!infinite)
+        {
+            Destroy(this);
+        }
+        
+
     }
 }
