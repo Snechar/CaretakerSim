@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PillsObject : BaseObject
 {
+
     public override void OnUse(SpawnerScript controller)
     {
         controller.DisablePills();
+        
+
 
     }
 }
