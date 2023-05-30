@@ -41,7 +41,7 @@ public class NPCStats : MonoBehaviour
     private bool finishedCurrentNeed = false;
     [SerializeField]
     private bool isDoingCurrentNeed = false;
-    private AIStateManager stateManager;
+    public AIStateManager stateManager;
     public RoomManager room;
 
 
@@ -117,8 +117,9 @@ public class NPCStats : MonoBehaviour
         while (hasPath)
         {
             yield return new WaitForSeconds(0.2f);
-            if (!agent.hasPath && agent.velocity.sqrMagnitude == 0f)
+            if (!agent.hasPath && agent.velocity.sqrMagnitude == 0f  && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
             {
+                stateManager.UpdateState(stateManager.idleState);
                 Interact(rememberScheduleObject);
                 hasPath = false;
                 break;
@@ -137,18 +138,21 @@ public class NPCStats : MonoBehaviour
         while (hasPath)
         {
             yield return new WaitForSeconds(0.2f);
-            if (!agent.hasPath && agent.velocity.sqrMagnitude == 0f)
+            if (!agent.hasPath && agent.velocity.sqrMagnitude == 0f && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
             {
+                stateManager.UpdateState(stateManager.idleState);
                 hasPath = false;
                 break;
             }
 
         }
-       
+
+
     }
     private void MoveToLocation(Transform location)
     {
         agent.SetDestination(location.position);
+        stateManager.UpdateState(stateManager.moveState);
     }
 
    

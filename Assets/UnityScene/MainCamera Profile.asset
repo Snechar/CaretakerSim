@@ -1,26 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6995743423162327607
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e021b4c809a781e468c2988c016ebbea, type: 3}
-  m_Name: ColorLookup
-  m_EditorClassIdentifier: 
-  active: 0
-  texture:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-    dimension: 1
-  contribution:
-    m_OverrideState: 0
-    m_Value: 0
---- !u!114 &-6495508712008831874
+--- !u!114 &-8745638791489996010
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
   m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   shadows:
-    m_OverrideState: 0
-    m_Value: {x: 0.79582953, y: 1, z: 0.18497247, w: 1}
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0.13348165}
   midtones:
-    m_OverrideState: 0
-    m_Value: {x: 0.8121641, y: 1, z: 0.4628319, w: 0.0487805}
+    m_OverrideState: 1
+    m_Value: {x: 0.9832478, y: 1, z: 0.92051655, w: -0.4226919}
   highlights:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: -0.15609756}
+    m_Value: {x: 1, y: 0.85423976, z: 0.8269487, w: -0.12235831}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -66,16 +46,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
   m_Name: LiftGammaGain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   lift:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.997572, y: 1, z: 0.95758957, w: 0}
   gamma:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.99191463, y: 1, z: 0.96548086, w: 0.08898777}
   gain:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.89187515, y: 0.97250944, z: 1, w: 0}
 --- !u!114 &-4848388394107220461
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -116,7 +96,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   balance:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -14
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,30 +111,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 6881200061482485414}
-  - {fileID: 4310979224163834169}
-  - {fileID: 7861603706598029127}
   - {fileID: 7564376436200510893}
   - {fileID: -4848388394107220461}
-  - {fileID: -6995743423162327607}
   - {fileID: -5919404318287668939}
   - {fileID: -2291906356709471021}
-  - {fileID: -6495508712008831874}
---- !u!114 &4310979224163834169
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
-  m_Name: ChromaticAberration
-  m_EditorClassIdentifier: 
-  active: 0
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0
+  - {fileID: -8745638791489996010}
+  - {fileID: 8948140882771170585}
 --- !u!114 &6881200061482485414
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -173,16 +135,16 @@ MonoBehaviour:
     m_Value: 0
   contrast:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 3
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: 20
+    m_Value: 10
 --- !u!114 &7564376436200510893
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -195,13 +157,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   skipIterations:
     m_OverrideState: 0
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 20.13
   intensity:
     m_OverrideState: 1
     m_Value: 0
@@ -230,7 +192,7 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &7861603706598029127
+--- !u!114 &8948140882771170585
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,10 +201,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
-  m_Name: Tonemapping
+  m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
+  m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   mode:
     m_OverrideState: 1
     m_Value: 1
+  gaussianStart:
+    m_OverrideState: 1
+    m_Value: 10
+  gaussianEnd:
+    m_OverrideState: 1
+    m_Value: 30
+  gaussianMaxRadius:
+    m_OverrideState: 1
+    m_Value: 1
+  highQualitySampling:
+    m_OverrideState: 1
+    m_Value: 0
+  focusDistance:
+    m_OverrideState: 0
+    m_Value: 10
+  aperture:
+    m_OverrideState: 0
+    m_Value: 5.6
+  focalLength:
+    m_OverrideState: 0
+    m_Value: 50
+  bladeCount:
+    m_OverrideState: 0
+    m_Value: 5
+  bladeCurvature:
+    m_OverrideState: 0
+    m_Value: 1
+  bladeRotation:
+    m_OverrideState: 0
+    m_Value: 0

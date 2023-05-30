@@ -136,9 +136,9 @@ namespace StarterAssets
 			{
 				if (Hit.transform.GetComponent<SpawnerScript>() != null)
 				{
+                    Hit.transform.GetComponent<SpawnerScript>().DisablePills();
 
-
-				}
+                }
 				if (Hit.transform.GetComponent<InteractablePlace>() != null)
 				{
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public enum SpawnType
 {
     Pills,
-    PillDispenser,
 
 }
 
@@ -13,7 +12,7 @@ public class SpawnerController : MonoBehaviour
 {
     public SpawnerScript[] Spawners;
     public RoomManager roomController;
-    public SpawnType type;
+    public SpawnType type = SpawnType.Pills;
     public bool DebugSpawner;
 
     void Start()
@@ -27,7 +26,11 @@ public class SpawnerController : MonoBehaviour
 
     public void SpawnRandomPills(int number)
     {
-        Spawners[Random.Range(0, Spawners.Length)].EnablePills();
+        if (DebugSpawner)
+        {
+            Spawners[Random.Range(0, Spawners.Length)].EnablePills();
+        }
+ 
     }
 
     private void Update()
@@ -37,10 +40,9 @@ public class SpawnerController : MonoBehaviour
             switch (type)
             {
                 case SpawnType.Pills:
-                    break;
-                case SpawnType.PillDispenser:
 
                     break;
+
             }
         }
     }

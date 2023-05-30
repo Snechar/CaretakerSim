@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8195955548688971512}
   - component: {fileID: 8195955548688971513}
   - component: {fileID: 5222278527493673030}
-  - component: {fileID: 6364389170491907647}
+  - component: {fileID: 7746698332801383043}
   m_Layer: 0
   m_Name: NPC
   m_TagString: NPC
@@ -150,12 +150,39 @@ MonoBehaviour:
   toiletRatePerHour: 10
   sleep: 100
   sleepRatePerHour: 10
-  actualSleepRate: 0
   isEating: 0
   isToilet: 0
   isSleep: 0
   isBusy: 0
---- !u!114 &6364389170491907647
+  idleStarted: 0
+  currentSchedule:
+    startTime: 0
+    endTime: 0
+    manager: {fileID: 0}
+    hasEnded: 0
+    hasStarted: 0
+    nextTask: 0
+    playedToday: 0
+    lastTask: 0
+    stateToEnter: {fileID: 0}
+  currentNeed:
+    startTime: 0
+    endTime: 0
+    manager: {fileID: 0}
+    hasEnded: 0
+    hasStarted: 0
+    nextTask: 0
+    playedToday: 0
+    lastTask: 0
+    stateToEnter: {fileID: 0}
+  agent: {fileID: 0}
+  hasPath: 0
+  finishedCurrentTask: 0
+  isDoingCurrentTask: 0
+  finishedCurrentNeed: 0
+  isDoingCurrentNeed: 0
+  room: {fileID: 0}
+--- !u!114 &7746698332801383043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,6 +191,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8195955548688971514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78a4faaace43f7b43bed35dbddcafa73, type: 3}
+  m_Script: {fileID: 11500000, guid: 68898ac18123cff4ebdd74013ab14d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
