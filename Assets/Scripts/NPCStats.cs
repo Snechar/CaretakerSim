@@ -43,6 +43,7 @@ public class NPCStats : MonoBehaviour
     private bool isDoingCurrentNeed = false;
     public AIStateManager stateManager;
     public RoomManager room;
+    public bool needsTessa;
 
 
 
@@ -53,15 +54,26 @@ public class NPCStats : MonoBehaviour
         {
             Debug.Log("Is Waiting");
         }
+
         currentSchedule = ScheduleManager.Instance.currentSchedule;
+        if (currentSchedule.canBeSkippedByTessa)
+        {
+            return;
+        }
         isDoingCurrentTask = true;
         finishedCurrentTask= false;
-        stateManager.UpdateState(currentSchedule.stateToEnter);
-        StartCoroutine(MoveToLocationSecure(ScheduleManager.Instance.currentSchedule.manager.gameObject.transform, currentSchedule));
+        StartCoroutine(MoveToLocationSecure(ScheduleManager.Instance.currentSchedule.manager.gameObject.transform, currentSchedule,currentSchedule.stateToEnter ));
 
     }
     public void StartSpecifiNeed(ScheduleObject schedule)
     {
+        if (needsTessa)
+        {
+            if (schedule.canBeSkippedByTessa)
+            {
+                return;
+            }
+        }
         if (isBusy)
         {
             return;
@@ -69,8 +81,7 @@ public class NPCStats : MonoBehaviour
         currentNeed = schedule;
         isDoingCurrentTask = true;
         finishedCurrentTask = false;
-        stateManager.UpdateState(currentNeed.stateToEnter);
-        StartCoroutine(MoveToLocationSecure(currentNeed.manager.gameObject.transform, currentNeed));
+        StartCoroutine(MoveToLocationSecure(currentNeed.manager.gameObject.transform, currentNeed, currentNeed.stateToEnter));
     }
     private void EndTask()
     {
@@ -109,17 +120,19 @@ public class NPCStats : MonoBehaviour
     //    StartCoroutine(CheckForTasks());
     //}
 
-    private IEnumerator MoveToLocationSecure(Transform location, ScheduleObject obj)
+    private IEnumerator MoveToLocationSecure(Transform location, ScheduleObject obj, AIBaseState stateToEnter)
     {
         MoveToLocation(location);
         ScheduleObject rememberScheduleObject = obj;
         hasPath = true;
+        stateManager.UpdateState(stateManager.moveState);
         while (hasPath)
         {
             yield return new WaitForSeconds(0.2f);
             if (!agent.hasPath && agent.velocity.sqrMagnitude == 0f  && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
             {
-                stateManager.UpdateState(stateManager.idleState);
+                stateManager.UpdateState(stateManager.moveState);
+                stateManager.UpdateState(stateToEnter);
                 Interact(rememberScheduleObject);
                 hasPath = false;
                 break;
@@ -127,16 +140,17 @@ public class NPCStats : MonoBehaviour
 
         }
     }
-    public void MoveToLocationSecureNoInteractCall(Transform location)
+    public void MoveToLocationSecureNoInteractCall(Transform location, AIBaseState stateToEnter)
     {
-        StartCoroutine(MoveToLocationSecureNoInteract(location));
+        StartCoroutine(MoveToLocationSecureNoInteract(location, stateToEnter));
     }
-    private IEnumerator MoveToLocationSecureNoInteract(Transform location)
+    private IEnumerator MoveToLocationSecureNoInteract(Transform location , AIBaseState stateToEnter)
     {
         MoveToLocation(location);
         hasPath = true;
         while (hasPath)
         {
+            stateManager.UpdateState(stateManager.moveState);
             yield return new WaitForSeconds(0.2f);
             if (!agent.hasPath && agent.velocity.sqrMagnitude == 0f && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
             {
@@ -176,6 +190,20 @@ public class NPCStats : MonoBehaviour
         ScheduleManager.Instance.scheduleEnd.AddListener(EndTask);
         stateManager = GetComponent<AIStateManager>();
 
+    }
+    public void OnInvertSchedule()
+    {
+        ScheduleManager.Instance.scheduleStart.RemoveListener(StartTask);
+        ScheduleManager.Instance.scheduleEnd.RemoveListener(EndTask);
+        ScheduleManager.Instance.invertedscheduleStart.AddListener(StartTask);
+        ScheduleManager.Instance.invertedscheduleEnd.AddListener(EndTask);
+    }
+    public void ReverseInvertSchedule()
+    {
+        ScheduleManager.Instance.scheduleStart.AddListener(StartTask);
+        ScheduleManager.Instance.scheduleEnd.AddListener(EndTask);
+        ScheduleManager.Instance.invertedscheduleStart.RemoveListener(StartTask);
+        ScheduleManager.Instance.invertedscheduleEnd.RemoveListener(EndTask);
     }
     public IEnumerator LowerStats()
     {

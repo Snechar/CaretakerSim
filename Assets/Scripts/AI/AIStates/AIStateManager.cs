@@ -31,15 +31,16 @@ public class AIStateManager : MonoBehaviour
 
             throw;
         }
-
-        currentState = idleState;
         animator =GetComponentInChildren<Animator>();
-        currentState.EnterState(this);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (currentState == null)
+        {
+            return;
+        }
         currentState.UpdateState(this);
     }
 

@@ -2,33 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PillDispenserInteractable : InteractablePlace
+public class HipBagInteractable : InteractablePlace
 {
-
     public override void Interact(GameObject original)
     {
         Inventory.Instance.SetItem(this.gameObject);
         if (!infinite || hasBeenPlacedDown)
         {
-            Destroy(this.gameObject); 
+            Destroy(this.gameObject);
         }
         if (hasBeenPlacedDown)
         {
-
-            needManager.AddNeed(new PillsNeed());
-            if (original.GetComponentInParent<PlacementScript>().hasItem)
-            {
-                original.GetComponentInParent<PlacementScript>().hasItem = false;
-            }
-
+            needManager.AddNeed(new HipBagNeed());
         }
-        
-
     }
 
     public override void OnPlaceDown(NPCNeedManager need)
     {
-        need.RemoveNeed(new PillsNeed());
-
+        need.RemoveNeed(new HipBagNeed());
     }
 }

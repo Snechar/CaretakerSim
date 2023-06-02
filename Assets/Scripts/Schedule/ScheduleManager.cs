@@ -8,9 +8,13 @@ public class ScheduleManager : MonoBehaviour
 {
     public static ScheduleManager Instance;
     public List<ScheduleObject> generalSchedule;
+    public List<ScheduleObject> invertedSchedule;
     public ScheduleObject currentSchedule;
+    public ScheduleObject currentInvertedSchedule;
     public UnityEvent scheduleStart;
     public UnityEvent scheduleEnd;
+    public UnityEvent invertedscheduleStart;
+    public UnityEvent invertedscheduleEnd;
 
     private void Awake()
     {
@@ -32,7 +36,54 @@ public class ScheduleManager : MonoBehaviour
     {
         return currentSchedule;
     }
+    private IEnumerator CheckInvertedSchedule()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if ((TimeSpan.FromHours(currentInvertedSchedule.endTime) - TimeController.Instance.currentTime.TimeOfDay).TotalSeconds < 0 && currentInvertedSchedule.hasStarted == true)
+        {
+            currentInvertedSchedule.hasEnded = true;
+            currentInvertedSchedule.playedToday = true;
+            SerializeInvertedSchedules();
+            if (currentInvertedSchedule.lastTask)
+            {
+                ResetSchedule();
+            }
+            invertedscheduleEnd.Invoke();
+        }
+        if ((TimeSpan.FromHours(currentInvertedSchedule.startTime) - TimeController.Instance.currentTime.TimeOfDay).TotalSeconds < 0 && !currentInvertedSchedule.hasEnded && !currentInvertedSchedule.hasStarted)
+        {
+            currentInvertedSchedule.hasStarted = true;
+            invertedscheduleStart.Invoke();
 
+        }
+        yield return new WaitForSeconds(0.8f);
+        StartCoroutine(CheckInvertedSchedule());
+    }
+    public void SerializeInvertedSchedules()
+    {
+
+        invertedSchedule.Sort((p1, p2) => p1.startTime.CompareTo(p2.startTime));
+        invertedSchedule[invertedSchedule.Count - 1].lastTask = true;
+        for (int i = 0; i < invertedSchedule.Count - 1; i++)
+        {
+            if (currentInvertedSchedule.manager == null)
+            {
+                currentInvertedSchedule = invertedSchedule[i];
+                currentInvertedSchedule.nextTask = true;
+                break;
+            }
+            if (invertedSchedule[i].hasEnded && !invertedSchedule[i + 1].hasEnded && !invertedSchedule[i + 1].hasStarted)
+            {
+                invertedSchedule[i].playedToday = true;
+                invertedSchedule[i + 1].nextTask = true;
+                currentInvertedSchedule = invertedSchedule[i + 1];
+                break;
+            }
+
+        }
+
+
+    }
     private IEnumerator CheckSchedule()
     {
         yield return new WaitForSeconds(0.2f);
@@ -85,6 +136,17 @@ public class ScheduleManager : MonoBehaviour
     public void ResetSchedule()
     {
         foreach (var item in generalSchedule)
+        {
+            item.hasStarted = false;
+            item.hasEnded = false;
+            item.nextTask = false;
+            item.playedToday = false;
+        }
+        SerializeSchedules();
+    }
+    public void ResetInvertedSchedule()
+    {
+        foreach (var item in invertedSchedule)
         {
             item.hasStarted = false;
             item.hasEnded = false;

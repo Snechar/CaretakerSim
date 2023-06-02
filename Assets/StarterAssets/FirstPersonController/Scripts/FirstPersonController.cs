@@ -142,10 +142,18 @@ namespace StarterAssets
 				if (Hit.transform.GetComponent<InteractablePlace>() != null)
 				{
 
-					Hit.transform.GetComponent<InteractablePlace>().Interact();
+					Hit.transform.GetComponent<InteractablePlace>().Interact(Hit.transform.parent.transform.parent.gameObject);
 				}
 			}
-			if (active == true)
+            if (Input.GetKeyDown(KeyCode.R) && active == true)
+            {
+                if (Hit.transform.GetComponent<InteractablePlace>() != null && !InfoScreenSingleton.Instance.isActive)
+                {
+					Debug.Log("Pressed R on something");
+					InfoScreenSingleton.Instance.Activate(Hit.transform.GetComponent<InteractablePlace>().technologyDataScriptableObject);
+                }
+            }
+            if (active == true)
 			{
 				if (Hit.transform.GetComponent<SpawnerScript>() != null || Hit.transform.GetComponent<InteractablePlace>() != null)
                 {
@@ -155,6 +163,11 @@ namespace StarterAssets
                 {
                     CanvasController.Instance.DisableInteractText();
                 }
+                if (Hit.transform.GetComponent<InteractablePlace>() != null && !InfoScreenSingleton.Instance.isActive)
+				{
+                    CanvasController.Instance.EnableReadText();
+                }
+				else { CanvasController.Instance.DisableReadText();}
             }
 
 

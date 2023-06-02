@@ -63,7 +63,7 @@ public class BedManager : ManagerBase
     }
     private void BrushTeeth(NPCStats npc)
     {
-        npc.MoveToLocationSecureNoInteractCall(brushPoint.transform);
+        npc.MoveToLocationSecureNoInteractCall(brushPoint.transform,FindObjectOfType<AIIdleState>());
     }
 
     public override void OnUse(NPCStats npc)

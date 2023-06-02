@@ -16,5 +16,6 @@ public class ScheduleObject
     public bool nextTask = false;
     public bool playedToday=false;
     public bool lastTask = false;
+    public bool canBeSkippedByTessa = false;
     public AIBaseState stateToEnter;
 }

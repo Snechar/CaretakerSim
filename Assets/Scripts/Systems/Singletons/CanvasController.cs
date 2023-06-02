@@ -9,6 +9,7 @@ public class CanvasController : MonoBehaviour
     public static CanvasController Instance;
     public GameObject InteractText;
     public GameObject DropText;
+    public GameObject ReadText;
     public bool shouldRemove = true;
 
     private void Awake()
@@ -43,5 +44,13 @@ public class CanvasController : MonoBehaviour
     public void EnableDropText()
     {
         DropText.SetActive(true);
+    }
+    public void DisableReadText()
+    {
+        ReadText.SetActive(false);
+    }
+    public void EnableReadText()
+    {
+        ReadText.SetActive(true);
     }
 }

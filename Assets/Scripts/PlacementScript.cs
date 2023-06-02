@@ -11,27 +11,35 @@ public class PlacementScript : MonoBehaviour
     public Transform placingPosition;
     private bool peterTheHorseIsHere = false;
     private GameObject peterTheHorse;
+    public bool hasItem;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player" && Inventory.Instance.item != null)
         {
-            CanvasController.Instance.EnableInteractText();
-            CanvasController.Instance.shouldRemove = false;
-            peterTheHorseIsHere = true;
-            peterTheHorse = other.gameObject;
+            if (Inventory.Instance.item.GetComponent<InteractablePlace>().GetType().ToString() != "HipBagInteractable")
+            {
+                CanvasController.Instance.EnableInteractText();
+                CanvasController.Instance.shouldRemove = false;
+                peterTheHorseIsHere = true;
+                peterTheHorse = other.gameObject;
+            }
         }
 
 
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player" && Inventory.Instance.item != null)
+        if (other.gameObject.tag == "Player" && Inventory.Instance.item != null )
         {
-            CanvasController.Instance.EnableInteractText();
-            CanvasController.Instance.shouldRemove = false;
-            peterTheHorseIsHere = true;
-            peterTheHorse = other.gameObject;
+            if (Inventory.Instance.item.GetComponent<InteractablePlace>().GetType().ToString() != "HipBagInteractable")
+            {
+                CanvasController.Instance.EnableInteractText();
+                CanvasController.Instance.shouldRemove = false;
+                peterTheHorseIsHere = true;
+                peterTheHorse = other.gameObject;
+            }
+
         }
     }
     private void OnTriggerExit(Collider other)
@@ -45,14 +53,18 @@ public class PlacementScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && Inventory.Instance.item != null && peterTheHorseIsHere)
         {
+            if (hasItem)
+            {
+                return;
+            }
             try
             {
                 Inventory.Instance.item.GetComponent<InteractablePlace>().OnPlaceDown(this.transform.parent.transform.parent.transform.parent.GetComponent<RoomManager>().Npc.GetComponent<NPCNeedManager>());
             }
             catch (System.Exception)
             {
-
-                Debug.Log("Room has no tenant");
+                Debug.Log("Could not get NPCNeedManager");
+                return;
             }
             GameObject objectToPlace = Inventory.Instance.item;
             GameObject currentObject =Instantiate(objectToPlace);
@@ -63,6 +75,7 @@ public class PlacementScript : MonoBehaviour
             currentObject.GetComponent<InteractablePlace>().needManager = this.transform.parent.transform.parent.transform.parent.GetComponent<RoomManager>().Npc.GetComponent<NPCNeedManager>();
             currentObject.GetComponent<InteractablePlace>().hasBeenPlacedDown = true;
              Inventory.Instance.RemoveItem();
+            hasItem= true;
         }
     }
 }

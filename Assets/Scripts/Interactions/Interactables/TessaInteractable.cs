@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PillDispenserInteractable : InteractablePlace
+public class TessaInteractable : InteractablePlace
 {
-
     public override void Interact(GameObject original)
     {
         Inventory.Instance.SetItem(this.gameObject);
         if (!infinite || hasBeenPlacedDown)
         {
-            Destroy(this.gameObject); 
+            Destroy(this.gameObject);
         }
         if (hasBeenPlacedDown)
         {
@@ -22,13 +21,10 @@ public class PillDispenserInteractable : InteractablePlace
             }
 
         }
-        
-
     }
 
     public override void OnPlaceDown(NPCNeedManager need)
     {
-        need.RemoveNeed(new PillsNeed());
-
+        need.RemoveNeed(new TessaNeed());
     }
 }

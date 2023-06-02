@@ -61,7 +61,7 @@ public class RoomController : MonoBehaviour
                     {
                         item2.Npc = item;
                         item.room = item2;
-                        return;
+                        break;
                     }
                 }
             }

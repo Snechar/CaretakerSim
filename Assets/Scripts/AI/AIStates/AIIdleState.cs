@@ -15,7 +15,7 @@ public class AIIdleState : AIBaseState
     {
         if (!Ai.npc.isBusy && !Ai.npc.hasPath && !Ai.Idled)
         {
-            Ai.npc.MoveToLocationSecureNoInteractCall(Ai.npc.room.RandomIdleManager().transform);
+            Ai.npc.MoveToLocationSecureNoInteractCall(Ai.npc.room.RandomIdleManager().transform, this);
             Ai.Idled = true;
             StartCoroutine(WaitSeconds(10, Ai));
         }
