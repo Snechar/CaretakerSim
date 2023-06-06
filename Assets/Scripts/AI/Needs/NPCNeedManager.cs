@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class NPCNeedManager : MonoBehaviour
 {
-    [SerializeField]
+
     public BaseNeed currentNeed;
     public PillsNeed pillsNeed = new PillsNeed();
     public HipBagNeed hipsNeed = new HipBagNeed();
     public TessaNeed tessaNeed = new TessaNeed();
 
-    [SerializeField]
+
     public List<BaseNeed> allNeeds = new List<BaseNeed>();
 
     public bool hasPillNeed;
@@ -40,7 +40,7 @@ public class NPCNeedManager : MonoBehaviour
     }
     public void RemoveNeed(BaseNeed need)
     {
-        Debug.Log("Removed need of " + need.GetType().ToString());
+        //Debug.Log("Removed need of " + need.GetType().ToString());
         allNeeds.Remove(need);
         if (need.GetType() == typeof(HipBagNeed))
         {
