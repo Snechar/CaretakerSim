@@ -14441,6 +14441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1411224427}
+  - component: {fileID: 1411224428}
   m_Layer: 0
   m_Name: Tessa
   m_TagString: Untagged
@@ -14464,6 +14465,22 @@ Transform:
   m_Father: {fileID: 399296401}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1411224428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411224426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8566b68a0416f41b4185a98304d2f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasBeenPlacedDown: 0
+  needManager: {fileID: 0}
+  infinite: 0
+  technologyDataScriptableObject: {fileID: 0}
 --- !u!1001 &1421236086
 PrefabInstance:
   m_ObjectHideFlags: 0
