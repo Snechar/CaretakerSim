@@ -118,8 +118,6 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
 			CheckButtons();
-
-
 			CheckHit();
         }
 
