@@ -189,6 +189,10 @@ namespace StarterAssets
 
 		private void CameraRotation()
 		{
+            if (Cursor.lockState == CursorLockMode.None)
+            {
+				return;
+            }
 				//Don't multiply mouse input by Time.deltaTime
 				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 				

@@ -44,6 +44,7 @@ public class NPCStats : MonoBehaviour
     public AIStateManager stateManager;
     public RoomManager room;
     public bool needsTessa;
+    public bool tutorialNpc;
 
 
 
@@ -180,14 +181,20 @@ public class NPCStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //We multiply the vaue by 3 because we intend to update the value every 3 seconds (to save computing power)
-        actualFoodRate = foodRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
-        actualToiletRate = toiletRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
-        actualSleepRate = sleepRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
-        StartCoroutine(LowerStats());
 
-        ScheduleManager.Instance.scheduleStart.AddListener(StartTask);
-        ScheduleManager.Instance.scheduleEnd.AddListener(EndTask);
+
+
+        if (!tutorialNpc)
+        {
+            //We multiply the vaue by 3 because we intend to update the value every 3 seconds (to save computing power)
+            actualFoodRate = foodRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
+            actualToiletRate = toiletRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
+            actualSleepRate = sleepRatePerHour / 3600 * TimeController.Instance.timeMultiplier * 3;
+            StartCoroutine(LowerStats());
+            ScheduleManager.Instance.scheduleStart.AddListener(StartTask);
+            ScheduleManager.Instance.scheduleEnd.AddListener(EndTask);
+        }
+
         stateManager = GetComponent<AIStateManager>();
 
     }
@@ -222,6 +229,7 @@ public class NPCStats : MonoBehaviour
     }
     private void DoToilet()
     {
+        
         if (currentNeed.manager != null)
         {
             if (currentNeed.manager.GetType() == typeof(ToiletManager))
@@ -249,6 +257,10 @@ public class NPCStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (tutorialNpc)
+        {
+            return;
+        }
         if (!isBusy && food <30)
         {
             DoFood();

@@ -11,6 +11,7 @@ public class CanvasController : MonoBehaviour
     public GameObject DropText;
     public GameObject ReadText;
     public bool shouldRemove = true;
+    public GameObject Menu;
 
     private void Awake()
     {
@@ -21,6 +22,22 @@ public class CanvasController : MonoBehaviour
         else
         {
             Instance = this;
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Menu.activeSelf)
+            {
+                Menu.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                Menu.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
     }
 

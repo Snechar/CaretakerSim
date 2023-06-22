@@ -37,7 +37,7 @@ Transform:
   - {fileID: 8566415989046141558}
   - {fileID: 8171988824474468530}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8171988823051335215
 CapsuleCollider:
@@ -116,6 +116,7 @@ MonoBehaviour:
     nextTask: 0
     playedToday: 0
     lastTask: 0
+    canBeSkippedByTessa: 0
     stateToEnter: {fileID: 0}
   currentNeed:
     startTime: 0
@@ -126,6 +127,7 @@ MonoBehaviour:
     nextTask: 0
     playedToday: 0
     lastTask: 0
+    canBeSkippedByTessa: 0
     stateToEnter: {fileID: 0}
   agent: {fileID: 8171988823051335214}
   hasPath: 0
@@ -136,6 +138,7 @@ MonoBehaviour:
   stateManager: {fileID: 0}
   room: {fileID: 0}
   needsTessa: 0
+  tutorialNpc: 0
 --- !u!114 &7733968893024942676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,8 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68898ac18123cff4ebdd74013ab14d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasPillNeed: 1
-  hasHipBagNeed: 0
+  hasPillNeed: 0
+  hasHipBagNeed: 1
+  hasTessaNeed: 0
 --- !u!114 &8171988823051335205
 MonoBehaviour:
   m_ObjectHideFlags: 0
