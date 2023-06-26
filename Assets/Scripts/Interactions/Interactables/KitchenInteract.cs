@@ -7,6 +7,7 @@ public class KitchenInteract : Interactable
     public override GameObject interactionObject { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     public KitchenManager kman;
+    public GameObject location;
 
     public override ManagerBase GetManager(NPCStats npc)
     {
@@ -28,5 +29,10 @@ public class KitchenInteract : Interactable
     void Update()
     {
         
+    }
+
+    public override GameObject GetLocation(NPCStats npc)
+    {
+        return location;
     }
 }

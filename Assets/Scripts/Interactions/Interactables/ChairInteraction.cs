@@ -29,4 +29,9 @@ public class ChairInteraction : Interactable
     {
         
     }
+
+    public override GameObject GetLocation(NPCStats npc)
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 184b0b4f92886fe46973a38c4796e8b6, type: 3}
+  m_Name: PillDispenserData 1
+  m_EditorClassIdentifier: 
+  TechName: Tessa Robot
+  Image: {fileID: 21300000, guid: 664c18c2ad3727541a098a83e0caa76b, type: 3}
+  TechDescription: "Een zorgrobot helpt structuur te geven aan de dag. Zo kunnen
+    ze taken en herinneringen uitspreken.\r\nBijvoorbeeld wanneer iemand langs gaat
+    komen of wanneer activiteiten in de woonkamer beginnen. Elke\r\nrobot heeft een
+    handzaam formaat waardoor hij makkelijk mee te nemen is. De robot stelt ook vragen\r\naan
+    je, leest berichten van anderen voor en kan muziek afspelen.\r\nEen voorbeeld
+    hiervan is Zorgrobot Tessa. Deze geeft verbale begeleiding aan cli\xEBnten bij
+    dagelijkse\r\nactiviteiten. Tessa kan hen helpen door aan te kondigen dat het
+    tijd is om de tanden te gaan poetsen en\r\nte gaan slapen. De robot heeft ook
+    een sociale functie zoals het stimuleren van ouderen om naar buiten\r\nte gaan
+    of kan zelf voor gezelligheid zorgen."

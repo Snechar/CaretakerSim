@@ -16,4 +16,5 @@ public abstract class Interactable : MonoBehaviour
     public abstract GameObject interactionObject { get; set; }
     abstract public void OnUse(NPCStats npc);
     public abstract ManagerBase GetManager(NPCStats npc);
+    public abstract GameObject GetLocation(NPCStats npc);
 }

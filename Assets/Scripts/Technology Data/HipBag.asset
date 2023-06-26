@@ -14,9 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TechName: Hip Bag
   Image: {fileID: 21300000, guid: ad94d15c3b6c84541b9005cea1e27262, type: 3}
-  TechDescription: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-    sunt in culpa qui officia deserunt mollit anim id est laborum."'
+  TechDescription: 'Een riem met heupairbag voorkomt dat mensen hun heup breken wanneer
+    zij vallen. De zachte riem is
+
+    onzichtbaar, omdat je hem onder de kleding
+    draagt. Hij bevat luchtkussentjes die zich automatisch
+
+    opblazen zodra de
+    drager valt. Deze kussentjes vangen de klap op en beschermen zo de heupbotten.
+
+    De
+    Wolk heupairbag is een voorbeeld van een slimme heupbescherming om heupfracturen
+    te
+
+    voorkomen bij kwetsbare ouderen. Sensoren in de Wolk monitoren 500x
+    per seconde iedere beweging
+
+    en herkennen een val direct. Voordat de drager
+    de grond raakt wordt een airbag opgeblazen rond de
+
+    heup zodat de val zacht
+    is.'

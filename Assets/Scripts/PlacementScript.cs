@@ -57,15 +57,7 @@ public class PlacementScript : MonoBehaviour
             {
                 return;
             }
-            try
-            {
-                Inventory.Instance.item.GetComponent<InteractablePlace>().OnPlaceDown(this.transform.parent.transform.parent.transform.parent.GetComponent<RoomManager>().Npc.GetComponent<NPCNeedManager>());
-            }
-            catch (System.Exception)
-            {
-                Debug.Log("Could not get NPCNeedManager");
-                return;
-            }
+            Inventory.Instance.item.GetComponent<InteractablePlace>().OnPlaceDown(this.transform.parent.transform.parent.transform.parent.GetComponent<RoomManager>().Npc.GetComponent<NPCNeedManager>());
             GameObject objectToPlace = Inventory.Instance.item;
             GameObject currentObject =Instantiate(objectToPlace);
             currentObject.transform.position = new Vector3(0, 0, 0);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class NPCNeedManager : MonoBehaviour
@@ -40,11 +41,28 @@ public class NPCNeedManager : MonoBehaviour
     }
     public void RemoveNeed(BaseNeed need)
     {
-        //Debug.Log("Removed need of " + need.GetType().ToString());
-        allNeeds.Remove(need);
+        allNeeds.Remove(allNeeds.Where(x => x.GetType() == need.GetType()).First());
+        //switch (need)
+        //{
+        //    case PillsNeed:
+        //        allNeeds.Remove(pillsNeed);
+        //        break;
+        //    case HipBagNeed:
+        //        allNeeds.Remove(hipsNeed);
+        //        break;
+        //    case TessaNeed:
+        //        allNeeds.Remove(tessaNeed);
+        //        break;
+        //    default:
+        //        break;
+        //}
         if (need.GetType() == typeof(HipBagNeed))
         {
             this.GetComponentInChildren<Animator>().SetFloat("BlendWalk", 0.5f);
+        }
+        if (EventBus.Instance != null)
+        {
+            EventBus.Instance.NeedFixed.Invoke();
         }
     }
     public void AddNeed(BaseNeed needToChange)

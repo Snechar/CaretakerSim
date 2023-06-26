@@ -23,4 +23,9 @@ public class BedInteract : Interactable
     {
         return bman;
     }
+
+    public override GameObject GetLocation(NPCStats npc)
+    {
+        return bman.gameObject;
+    }
 }

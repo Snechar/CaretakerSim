@@ -34,13 +34,13 @@ public class NPCStats : MonoBehaviour
     public NavMeshAgent agent;
     public bool hasPath = false;
     [SerializeField]
-    private bool finishedCurrentTask = false;
+    public bool finishedCurrentTask = false;
     [SerializeField]
-    private bool isDoingCurrentTask = false;
+    public bool isDoingCurrentTask = false;
     [SerializeField]
-    private bool finishedCurrentNeed = false;
+    public bool finishedCurrentNeed = false;
     [SerializeField]
-    private bool isDoingCurrentNeed = false;
+    public bool isDoingCurrentNeed = false;
     public AIStateManager stateManager;
     public RoomManager room;
     public bool needsTessa;
@@ -57,13 +57,13 @@ public class NPCStats : MonoBehaviour
         }
 
         currentSchedule = ScheduleManager.Instance.currentSchedule;
-        if (currentSchedule.canBeSkippedByTessa)
+        if (currentSchedule.canBeSkippedByTessa && needsTessa)
         {
             return;
         }
         isDoingCurrentTask = true;
         finishedCurrentTask= false;
-        StartCoroutine(MoveToLocationSecure(ScheduleManager.Instance.currentSchedule.manager.gameObject.transform, currentSchedule,currentSchedule.stateToEnter ));
+        StartCoroutine(MoveToLocationSecure(ScheduleManager.Instance.currentSchedule.manager.GetComponent<Interactable>().GetLocation(this).transform, currentSchedule,currentSchedule.stateToEnter ));;
 
     }
     public void StartSpecifiNeed(ScheduleObject schedule)
@@ -140,6 +140,7 @@ public class NPCStats : MonoBehaviour
             }
 
         }
+        stateManager.animator.Play("Idle");
     }
     public void MoveToLocationSecureNoInteractCall(Transform location, AIBaseState stateToEnter)
     {
@@ -161,7 +162,7 @@ public class NPCStats : MonoBehaviour
             }
 
         }
-
+        stateManager.animator.Play("Idle"); stateManager.animator.Play("Idle");
 
     }
     private void MoveToLocation(Transform location)

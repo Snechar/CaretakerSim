@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour
         ItemToCopy = Item;
         item = Instantiate(ItemToCopy,parentTransform);
         item.GetComponent<BoxCollider>().enabled = false;
+        item.transform.position = item.transform.parent.transform.position;
         CanvasController.Instance.EnableDropText();
     }
     public void RemoveItem()

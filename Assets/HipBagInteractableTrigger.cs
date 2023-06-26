@@ -48,15 +48,7 @@ public class HipBagInteractableTrigger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && Inventory.Instance.item != null && peterTheHorseIsHere)
         {
             Debug.Log("tried to attach hipbag");
-            try
-            {
-                Inventory.Instance.item.GetComponent<InteractablePlace>().OnPlaceDown(this.transform.parent.GetComponent<NPCNeedManager>());
-            }
-            catch (System.Exception)
-            {
-
-                return;
-            }
+            Inventory.Instance.item.GetComponent<InteractablePlace>().OnPlaceDown(this.transform.parent.GetComponent<NPCNeedManager>());
             GameObject objectToPlace = Inventory.Instance.item;
             GameObject currentObject = Instantiate(objectToPlace);
             currentObject.transform.position = new Vector3(0, 0, 0);

@@ -13,7 +13,7 @@ public class AIIdleState : AIBaseState
 
     public override void UpdateState(AIStateManager Ai)
     {
-        if (!Ai.npc.isBusy && !Ai.npc.hasPath && !Ai.Idled)
+        if (!Ai.npc.isBusy && !Ai.npc.hasPath && !Ai.Idled && !Ai.npc.isDoingCurrentNeed && Ai.npc.finishedCurrentTask)
         {
             Ai.npc.MoveToLocationSecureNoInteractCall(Ai.npc.room.RandomIdleManager().transform, this);
             Ai.Idled = true;

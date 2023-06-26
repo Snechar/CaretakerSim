@@ -139,7 +139,6 @@ namespace StarterAssets
                 }
 				if (Hit.transform.GetComponent<InteractablePlace>() != null)
 				{
-
 					Hit.transform.GetComponent<InteractablePlace>().Interact(Hit.transform.parent.transform.parent.gameObject);
 				}
 			}

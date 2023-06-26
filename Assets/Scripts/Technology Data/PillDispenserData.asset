@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TechName: Pill Dispenser
   Image: {fileID: 21300000, guid: 4aa5df48dd99c714f97bd995ed9e1433, type: 3}
-  TechDescription: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-    sunt in culpa qui officia deserunt mollit anim id est laborum."'
+  TechDescription: "Een slimme medicijndispenser is handig wanneer je zelf geen overzicht
+    meer kunt houden over je\r\nmedicatiegebruik. Hiermee kun je toch zelfstandig
+    op het juiste moment je medicijnen innemen. Zonder\r\ndat daar steeds iemand
+    voor langs hoeft te komen.\r\nDe Medido is een voorbeeld van een slimme medicijndispenser
+    die op het juiste moment de juiste\r\nmedicatie uitgeeft. Met een herinneringssignaal
+    herinnert de medicijndispenser de cli\xEBnt aan het\r\nmedicatiemoment. Nadat
+    de cli\xEBnt op de OK-knop drukt, wordt de medicatie in de juiste hoeveelheid\r\naangeboden."
